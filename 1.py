@@ -1,14 +1,14 @@
+import ssl
+ssl._create_default_https_context = ssl._create_unverified_context
+import urllib.request
 from bs4 import BeautifulSoup
-import csv
-import requests  # 导入requests库
-import os
 
-html_url = ('https://voice.baidu.com/act/newpneumonia/newpneumonia/?from=osari_aladin_banner#tab4')  # 指定要爬取的url
-response = requests.get(html_url)  # 发送get请求
-responses=requests.get(html_url)
-with open('pc4.html', 'wb') as f:
-    f.write(response.content)  # 将爬取到的数据储存到D盘的pc文件夹
-    print('完成爬取！！！')
-soup=BeautifulSoup(open('pc4.html',encoding='utf-8'),features='html.parser')
-print(soup.select('div'))
+
+url = "https://voice.baidu.com/act/newpneumonia/newpneumonia"
+response = urllib.request.urlopen(url)
+data = response.read().decode()
+# print(data)
+file_path = "疫情官网.html"
+with open(file_path,"w",encoding="utf-8") as f:
+    f.write(data))
 
